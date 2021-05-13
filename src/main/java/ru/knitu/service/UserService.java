@@ -6,6 +6,6 @@ public interface UserService {
 
     void createUser(UserForm userForm);
 
-    void createTechUser();
+    void createTechUser(boolean admin);
 
 }

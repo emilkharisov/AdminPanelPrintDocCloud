@@ -1,4 +1,4 @@
-package ru.knitu.controller;
+package ru.knitu.controller.vendingMachine;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class VendingMachineController {
         modelMap.addAttribute("typeList", typeOfLocationRepository.findAll());
         modelMap.addAttribute("universityList", universityRepository.findAll());
 
-        ControllerUtility.setLogin(modelMap, authentication);
+        ControllerUtility.setMainParams(modelMap, authentication);
 
     }
 

@@ -34,14 +34,5 @@ public class UserController {
         return "addUserPage";
     }
 
-    @GetMapping("/createTechUser")
-    public String createTechUser(){
-
-
-        userService.createTechUser();
-
-        return "redirect:/login";
-    }
-
 
 }

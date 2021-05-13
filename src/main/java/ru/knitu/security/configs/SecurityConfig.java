@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import ru.knitu.model.Role;
 
 
 @Configuration
@@ -32,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/createTechUser").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/static/**").permitAll()
-                .antMatchers("/addMachine/**").authenticated()
+                .antMatchers("/addVendingMachine/**").hasAuthority(Role.ADMIN.name())
                 .and()
                 .rememberMe().key("uniqueAndSecret")
                 .and()

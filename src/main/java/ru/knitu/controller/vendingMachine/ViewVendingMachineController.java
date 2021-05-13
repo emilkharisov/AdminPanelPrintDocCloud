@@ -1,4 +1,4 @@
-package ru.knitu.controller;
+package ru.knitu.controller.vendingMachine;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,7 +17,7 @@ public class ViewVendingMachineController {
     @GetMapping("/getAllVendingMachine")
     public String getPage(Authentication authentication, ModelMap modelMap){
 
-        ControllerUtility.setLogin(modelMap, authentication);
+        ControllerUtility.setMainParams(modelMap, authentication);
 
         modelMap.addAttribute("vendingList", vendingMachineRepository.findAll());
 

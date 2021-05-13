@@ -53,9 +53,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createTechUser() {
+    public void createTechUser(boolean admin) {
 
         String hashpassword = passwordEncoder.encode("1234");
+        Role role = admin ? Role.ADMIN : Role.USER;
 
         User user = User.builder().firstname("ADMIN")
                 .lastname("ADMIN")
@@ -65,7 +66,7 @@ public class UserServiceImpl implements UserService {
                 .hashpassword(hashpassword)
                 .email("admin@admin.mail.ru")
                 .state(State.ACTIVE)
-                .role(Role.ADMIN)
+                .role(role)
                 .build();
 
         userRepository.save(user);
