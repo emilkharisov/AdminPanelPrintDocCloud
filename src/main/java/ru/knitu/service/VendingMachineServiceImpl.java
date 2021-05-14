@@ -3,14 +3,8 @@ package ru.knitu.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.knitu.form.VendingMachineForm;
-import ru.knitu.model.City;
-import ru.knitu.model.TypeOfLocation;
-import ru.knitu.model.University;
-import ru.knitu.model.VendingMachine;
-import ru.knitu.repo.CityRepository;
-import ru.knitu.repo.TypeOfLocationRepository;
-import ru.knitu.repo.UniversityRepository;
-import ru.knitu.repo.VendingMachineRepository;
+import ru.knitu.model.*;
+import ru.knitu.repo.*;
 
 @Service
 public class VendingMachineServiceImpl implements VendingMachineService {
@@ -23,6 +17,8 @@ public class VendingMachineServiceImpl implements VendingMachineService {
     TypeOfLocationRepository typeOfLocationRepository;
     @Autowired
     UniversityRepository universityRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public void createVendingMachine(VendingMachineForm vendingMachineForm) {
@@ -35,6 +31,8 @@ public class VendingMachineServiceImpl implements VendingMachineService {
 
         long id = previousVendingMachine == null ? 1 : previousVendingMachine.getId() + 1;
 
+        User user = userRepository.findById(vendingMachineForm.getOwner());
+
         VendingMachine vendingMachine = VendingMachine.builder()
                     .name("PrintDocCloud-Machine-V" + id)
                     .city(city)
@@ -43,6 +41,7 @@ public class VendingMachineServiceImpl implements VendingMachineService {
                     .address(vendingMachineForm.getAddress())
                     .rentCoast(vendingMachineForm.getRentCoast())
                     .coastForPrint(vendingMachineForm.getCoastForPrint())
+                    .user(user)
                 .build();
 
         vendingMachineRepository.save(vendingMachine);

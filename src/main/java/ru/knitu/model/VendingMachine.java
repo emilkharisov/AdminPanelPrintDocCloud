@@ -39,6 +39,10 @@ public class VendingMachine {
 
     private Integer coastForPrint;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
 
 }

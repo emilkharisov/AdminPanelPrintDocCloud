@@ -12,6 +12,7 @@ import ru.knitu.form.VendingMachineForm;
 import ru.knitu.repo.CityRepository;
 import ru.knitu.repo.TypeOfLocationRepository;
 import ru.knitu.repo.UniversityRepository;
+import ru.knitu.repo.UserRepository;
 import ru.knitu.service.VendingMachineService;
 import ru.knitu.utils.ControllerUtility;
 
@@ -26,11 +27,15 @@ public class VendingMachineController {
     UniversityRepository universityRepository;
     @Autowired
     VendingMachineService vendingMachineService;
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping("/addVendingMachine")
     public String getAddVendingMachinePage(Authentication authentication, ModelMap modelMap){
 
         setParams(authentication, modelMap);
+
+        modelMap.addAttribute("users", userRepository.findAll());
 
         return "addVendingMachine";
     }
@@ -50,6 +55,9 @@ public class VendingMachineController {
         modelMap.addAttribute("cityList", cityRepository.findAll());
         modelMap.addAttribute("typeList", typeOfLocationRepository.findAll());
         modelMap.addAttribute("universityList", universityRepository.findAll());
+
+        modelMap.addAttribute("users", userRepository.findAll());
+
 
         ControllerUtility.setMainParams(modelMap, authentication);
 

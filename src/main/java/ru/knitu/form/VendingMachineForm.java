@@ -21,6 +21,7 @@ public class VendingMachineForm {
     private long university;
     private int rentCoast;
     private int coastForPrint;
+    private long owner;
 
 
 }

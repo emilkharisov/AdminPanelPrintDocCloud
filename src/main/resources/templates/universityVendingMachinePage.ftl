@@ -1,8 +1,9 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
+
     <script>
         var now = new Date().toLocaleString('en-GB', { hour12: false });
-        var titleName = 'Выгрузка аппаратов за ' + now
+        var titleName = 'Выгрузка аппаратов в университетах ' + now;
 
         $(document).ready(function() {
             $('#table1').DataTable( {
@@ -40,8 +41,7 @@
         <tr>
             <th>Наименование</th>
             <th>Город</th>
-            <th>Локация</th>
-            <th>Адресс</th>
+            <th>Университет</th>
             <th>Аренда</th>
             <th>Цена за лист</th>
         </tr>
@@ -51,8 +51,7 @@
         <tr>
             <td>${vending.getName()}</td>
             <td>${vending.getCity().getCity()}</td>
-            <td>${vending.getTypeOfLocation().getType()}</td>
-            <td>${vending.getAddress()}</td>
+            <td>${vending.getUniversity().getName()}</td>
             <td>${vending.getRentCoast()}</td>
             <td>${vending.getCoastForPrint()}</td>
 

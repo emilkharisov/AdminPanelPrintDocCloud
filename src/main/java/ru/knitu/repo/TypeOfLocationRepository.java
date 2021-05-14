@@ -8,4 +8,6 @@ public interface TypeOfLocationRepository extends JpaRepository<TypeOfLocation, 
 
     TypeOfLocation findById(Long id);
 
+    TypeOfLocation findByType(String type);
+
 }

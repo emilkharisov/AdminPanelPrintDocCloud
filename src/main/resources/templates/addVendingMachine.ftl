@@ -19,6 +19,20 @@
     <form method="post" action="/addVendingMachine">
         <table>
             <tr>
+                <td>Владелец</td>
+                <td>
+                    <input list="user-list" name="owner">
+                    <datalist id="user-list">
+                        <option disabled>Выберите владельца</option>
+                        <#if users ??>
+                            <#list users as user>
+                                <option value=${user.getId()}>${user.getTypeOfLegalEntity()} ${user.getNameOfLegalEntity()}</option>
+                            </#list>
+                        </#if>
+                    </datalist>
+                </td>
+            </tr>
+            <tr>
                 <td>Город</td>
                 <td>
                     <select name="city" id="city" class="select-field">

@@ -67,6 +67,8 @@ public class UserServiceImpl implements UserService {
                 .email("admin@admin.mail.ru")
                 .state(State.ACTIVE)
                 .role(role)
+                .typeOfLegalEntity("ООО")
+                .nameOfLegalEntity("Vending Optom")
                 .build();
 
         userRepository.save(user);

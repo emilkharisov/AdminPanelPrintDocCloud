@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/createTechUser").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/static/**").permitAll()
+                .antMatchers("/init/**").permitAll()
                 .antMatchers("/addVendingMachine/**").hasAuthority(Role.ADMIN.name())
                 .and()
                 .rememberMe().key("uniqueAndSecret")
