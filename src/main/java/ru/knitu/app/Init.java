@@ -3,14 +3,11 @@ package ru.knitu.app;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.knitu.model.City;
-import ru.knitu.model.TypeOfLocation;
-import ru.knitu.model.University;
-import ru.knitu.repo.CityRepository;
-import ru.knitu.repo.TypeOfLocationRepository;
-import ru.knitu.repo.UniversityRepository;
-import ru.knitu.repo.UserRepository;
+import ru.knitu.model.*;
+import ru.knitu.repo.*;
 import ru.knitu.service.UserService;
+
+import java.time.LocalDateTime;
 
 
 @Controller
@@ -26,6 +23,11 @@ public class Init {
     TypeOfLocationRepository typeOfLocationRepository;
     @Autowired
     UniversityRepository universityRepository;
+    @Autowired
+    VendingMachineRepository vendingMachineRepository;
+
+    @Autowired
+    SellingRepo sellingRepo;
 
     @GetMapping("/init")
     public String init(){
@@ -37,6 +39,75 @@ public class Init {
         createTypeOfLocationList();
 
         return "redirect:/getMainPage";
+
+    }
+
+    @GetMapping("/initSelling")
+    public String initSelling(){
+
+        // Test locale dates
+        LocalDateTime localDateTime = LocalDateTime.of(2020, 2, 1, 18, 10);
+        LocalDateTime localDateTime1 = LocalDateTime.of(2020, 2, 2, 18, 10);
+        LocalDateTime localDateTime2 = LocalDateTime.of(2020, 2, 3, 18, 10);
+
+        LocalDateTime localDateTime3 = LocalDateTime.of(2020, 3, 1, 18, 10);
+
+        LocalDateTime localDateTime4 = LocalDateTime.of(2021, 2, 1, 18, 10);
+        LocalDateTime localDateTime5 = LocalDateTime.of(2021, 3, 1, 18, 10);
+
+        VendingMachine vendingMachineUnivercity = vendingMachineRepository.findVendingMachineById(3L);
+        VendingMachine vendingMachineMoscow = vendingMachineRepository.findVendingMachineById(4L);
+        VendingMachine vendingMachineUnivercity2 = vendingMachineRepository.findVendingMachineById(5L);
+
+        // User - 1 Univer
+        buildSelling(vendingMachineUnivercity, localDateTime, 100);
+        buildSelling(vendingMachineUnivercity, localDateTime1, 171);
+        buildSelling(vendingMachineUnivercity, localDateTime2, 5);
+
+        buildSelling(vendingMachineUnivercity, localDateTime3, 6);
+
+        buildSelling(vendingMachineUnivercity, localDateTime4, 7);
+        buildSelling(vendingMachineUnivercity, localDateTime5, 8);
+
+        // User - 2 Univer
+        buildSelling(vendingMachineUnivercity2, localDateTime, 12);
+        buildSelling(vendingMachineUnivercity2, localDateTime1, 21);
+        buildSelling(vendingMachineUnivercity2, localDateTime2, 21);
+
+        buildSelling(vendingMachineUnivercity2, localDateTime3, 42);
+
+        buildSelling(vendingMachineUnivercity2, localDateTime4, 4);
+        buildSelling(vendingMachineUnivercity2, localDateTime5, 121);
+
+        // User - 2 Bussiness
+        buildSelling(vendingMachineMoscow, localDateTime, 2);
+        buildSelling(vendingMachineMoscow, localDateTime1, 1);
+        buildSelling(vendingMachineMoscow, localDateTime2, 34);
+
+        buildSelling(vendingMachineMoscow, localDateTime3, 43);
+
+        buildSelling(vendingMachineMoscow, localDateTime4, 213);
+        buildSelling(vendingMachineMoscow, localDateTime5, 12);
+
+
+        return "redirect:/getMainPage";
+
+    }
+
+    private void buildSelling(VendingMachine vendingMachine, LocalDateTime localDateTime, int countOfPaper) {
+
+        long sum = countOfPaper * 2;
+
+        Selling selling = Selling.builder()
+                    .vendingMachine(vendingMachine)
+                    .time(localDateTime)
+                    .countOfPaper(countOfPaper)
+                    .sum(sum)
+                    .year(localDateTime.getYear())
+                    .month(localDateTime.getMonthValue())
+                .build();
+
+        sellingRepo.save(selling);
 
     }
 

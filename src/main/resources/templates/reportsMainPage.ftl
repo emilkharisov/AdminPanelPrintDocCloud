@@ -27,14 +27,14 @@
         <#if isAdmin??>
             <h2>Отчёты для администратора</h2>
             <ul class="circle" style="font-size: 30px">
-                <hr class="disck"><li><a href="/getBenefitsByYearPage">Отчёт по всем аппаратам</a></li>
+                <hr class="disck"><li><a href="/allReportSelling">Отчёт по всем аппаратам</a></li>
                 <hr class="disck"><li><a href="/getBooksByYearPage">Отчёт по всем аппаратам университетов</a></li>
                 <hr class="disck"><li><a href="/getMethodologyByYearPage">Отчёт по всем аппаратам бизнес-центров</a></li>
             </ul>
             <br>
         </#if>
         <h2>Отчёты для пользователя</h2>
-        <ul class="circle" style=font-size: 30px">
+        <ul class="circle" style="font-size: 30px">
             <hr class="disck"><li><a href="/getpatentsByYearPage">Отчёты всех аппаратов</a></li>
             <hr class="disck"><li><a href="/getpatentsByYearPage">Отчёт аппарата</a></li>
 

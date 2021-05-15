@@ -1,6 +1,7 @@
 package ru.knitu.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import ru.knitu.model.City;
 import ru.knitu.model.TypeOfLocation;
 import ru.knitu.model.User;
 import ru.knitu.model.VendingMachine;
@@ -16,4 +17,7 @@ public interface VendingMachineRepository extends JpaRepository<VendingMachine, 
     List<VendingMachine> findAllByTypeOfLocation(TypeOfLocation typeOfLocation);
 
     List<VendingMachine> findAllByUser(User user);
+
+    VendingMachine findVendingMachineById(Long id);
+
 }

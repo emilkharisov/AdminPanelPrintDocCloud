@@ -1,4 +1,4 @@
-package ru.knitu.controller;
+package ru.knitu.controller.reports;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

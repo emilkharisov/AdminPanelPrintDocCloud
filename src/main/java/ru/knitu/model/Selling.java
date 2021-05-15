@@ -29,4 +29,7 @@ public class Selling {
     private Integer countOfPaper;
     private Long sum;
 
+    private Integer year;
+    private Integer month;
+
 }
