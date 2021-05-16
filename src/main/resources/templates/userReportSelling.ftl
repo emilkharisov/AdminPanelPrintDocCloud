@@ -3,6 +3,11 @@
     <script>
         var now = new Date().toLocaleString('en-GB', { hour12: false });
 
+        var userName = '';
+        <#if name ??>
+        userName = '${name}';
+        </#if>
+
         var reportTime = '';
 
         <#if yearMonth??>
@@ -13,7 +18,7 @@
         reportTime = '${year}';
         </#if>
 
-        var titleName = 'Отчёт ' + reportTime;
+        var titleName = 'Отчёт ' + userName + '  ' + reportTime;
 
         $(document).ready(function() {
             $('#table1').DataTable( {
@@ -46,7 +51,7 @@
     </script>
 
     <br>
-<form method="post" action="/allReportSelling">
+<form method="post" action="/userAllReportSelling">
     <table>
         <tr>
             <td><label>Выбрать год</label></td>

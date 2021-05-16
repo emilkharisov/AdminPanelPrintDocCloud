@@ -26,17 +26,19 @@
     <div style="margin-left: 20px">
         <#if isAdmin??>
             <h2>Отчёты для администратора</h2>
-            <ul class="circle" style="font-size: 30px">
+            <ul class="circle" style="font-size: 20px">
                 <hr class="disck"><li><a href="/allReportSelling">Отчёт по всем аппаратам</a></li>
-                <hr class="disck"><li><a href="/getBooksByYearPage">Отчёт по всем аппаратам университетов</a></li>
-                <hr class="disck"><li><a href="/getMethodologyByYearPage">Отчёт по всем аппаратам бизнес-центров</a></li>
+                <hr class="disck"><li><a href="/univerReportSelling">Отчёт по всем аппаратам университетов</a></li>
+                <hr class="disck"><li><a href="/bussinessReportSelling">Отчёт по всем аппаратам бизнес-центров</a></li>
             </ul>
             <br>
         </#if>
         <h2>Отчёты для пользователя</h2>
-        <ul class="circle" style="font-size: 30px">
-            <hr class="disck"><li><a href="/getpatentsByYearPage">Отчёты всех аппаратов</a></li>
-            <hr class="disck"><li><a href="/getpatentsByYearPage">Отчёт аппарата</a></li>
+        <ul class="circle" style="font-size: 20px">
+            <hr class="disck"><li><a href="/userAllReportSelling">Отчёты всех аппаратов</a></li>
+            <#list userVendings as vending>
+                <hr class="disck"><li><a href="/vendingReportSelling?vendingMachine=${vending.getId()}">Отчёт аппарата ${vending.getName()}</a></li>
+            </#list>
 
         </ul>
     </div>

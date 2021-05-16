@@ -13,7 +13,7 @@
         reportTime = '${year}';
         </#if>
 
-        var titleName = 'Отчёт ' + reportTime;
+        var titleName = 'Отчёт по бизнес-центрам ' + reportTime;
 
         $(document).ready(function() {
             $('#table1').DataTable( {
@@ -46,7 +46,7 @@
     </script>
 
     <br>
-<form method="post" action="/allReportSelling">
+<form method="post" action="/bussinessReportSelling">
     <table>
         <tr>
             <td><label>Выбрать год</label></td>
@@ -91,7 +91,7 @@
         <tr>
             <th>Локация</th>
             <th>Город</th>
-            <th>Тип</th>
+            <th>Адресс</th>
             <th>Дата и время</th>
             <th>Сумма</th>
             <th>Количество страниц</th>
@@ -102,7 +102,7 @@
         <tr>
             <td>${selling.getVendingMachine().getName()}</td>
             <td>${selling.getVendingMachine().getCity().getCity()}</td>
-            <td>${selling.getVendingMachine().getTypeOfLocation().getType()}</td>
+            <td>${selling.getVendingMachine().getAddress()}</td>
             <td>${selling.getTime()}</td>
             <td>${selling.getSum()}</td>
             <td>${selling.getCountOfPaper()}</td>

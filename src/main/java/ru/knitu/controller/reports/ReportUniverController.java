@@ -7,30 +7,32 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.knitu.model.Selling;
 import ru.knitu.repo.SellingRepo;
 import ru.knitu.utils.ControllerUtility;
 
-
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
-public class AllReportsController {
+public class ReportUniverController {
 
     @Autowired
     SellingRepo sellingRepo;
 
-    @GetMapping("/allReportSelling")
+    @GetMapping("/univerReportSelling")
     public String getAllReportSelling(Authentication authentication, ModelMap modelMap){
 
 
         ControllerUtility.setMainParams(modelMap, authentication);
 
-        modelMap.addAttribute("sellings", sellingRepo.findAll());
+        modelMap.addAttribute("sellings", filterUniver(sellingRepo.findAll()));
 
-        return "reportSelling";
+        return "reportSellingUniver";
     }
 
-    @PostMapping("/allReportSelling")
+    @PostMapping("/univerReportSelling")
     public String search(Authentication authentication, ModelMap modelMap, @RequestParam Optional<Integer> year, @RequestParam Optional <Integer> month){
 
         if (year.isPresent()){
@@ -39,14 +41,14 @@ public class AllReportsController {
 
                 String monthString = ControllerUtility.getMonthString(month.get());
 
-                modelMap.addAttribute("sellings", sellingRepo.findAllByYearAndMonth(year.get(), month.get()));
+                modelMap.addAttribute("sellings", filterUniver(sellingRepo.findAllByYearAndMonth(year.get(), month.get())));
                 modelMap.addAttribute("yearMonth", year.get() + " "  + monthString);
 
 
             }
             else {
 
-                modelMap.addAttribute("sellings", sellingRepo.findAllByYear(year.get()));
+                modelMap.addAttribute("sellings", filterUniver(sellingRepo.findAllByYear(year.get())));
                 modelMap.addAttribute("year", year.get());
 
             }
@@ -54,15 +56,24 @@ public class AllReportsController {
         }
         else {
 
-            modelMap.addAttribute("sellings", sellingRepo.findAll());
+            modelMap.addAttribute("sellings", filterUniver(sellingRepo.findAll()));
 
 
         }
 
         ControllerUtility.setMainParams(modelMap, authentication);
 
-        return "reportSelling";
+        return "reportSellingUniver";
     }
+
+    private List<Selling> filterUniver(List<Selling> sellings){
+
+        return  sellings.stream()
+                .filter(selling -> selling.getVendingMachine().getUniversity() != null)
+                .collect(Collectors.toList());
+    }
+
+
 
 
 }
