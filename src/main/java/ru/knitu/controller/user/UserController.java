@@ -1,4 +1,4 @@
-package ru.knitu.controller;
+package ru.knitu.controller.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.knitu.form.UserForm;
 import ru.knitu.service.UserService;
+import ru.knitu.utils.ControllerUtility;
 
 @Controller
 public class UserController {
@@ -19,7 +20,7 @@ public class UserController {
     public String getAddUserPage(Authentication authentication, ModelMap modelMap){
 
 
-        modelMap.addAttribute("login", "login");
+        ControllerUtility.setMainParams(modelMap, authentication);
 
         return "addUserPage";
     }
@@ -29,7 +30,7 @@ public class UserController {
 
         userService.createUser(userForm);
 
-        modelMap.addAttribute("login", "login");
+        ControllerUtility.setMainParams(modelMap, authentication);
 
         return "addUserPage";
     }

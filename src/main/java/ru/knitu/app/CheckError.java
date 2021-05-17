@@ -19,7 +19,7 @@ public class CheckError {
     @Autowired
     VendingErrorRepository vendingErrorRepository;
 
-    @Scheduled(fixedRate = 9000)
+    @Scheduled(fixedRate = 100000)
     public void checkError(){
 
         if(vendingErrorRepository != null) {
