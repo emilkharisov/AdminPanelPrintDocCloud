@@ -22,7 +22,6 @@
             <th>Статус</th>
             <th></th>
             <th></th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -43,8 +42,11 @@
                 <td>Активный</td>
             </#if>
             <td><a href="/getEditUserPage?userId=${user.getId()}">Редактировать</a></td>
-            <td><a href="/blockUser?userId=${user.getId()}">Заблокировать</a></td>
-            <td><a href="/unBlockUser?userId=${user.getId()}">Раблокировать</a></td>
+            <#if user.getState() == stateBanned>
+                <td><a href="/unBlockUser?userId=${user.getId()}" class="badge badge-success">Раблокировать</a></td>
+            <#else>
+                <td><a href="/blockUser?userId=${user.getId()}" class="badge badge-danger">Заблокировать</a></td>
+            </#if>
         </tr>
         </#list>
         </tbody>

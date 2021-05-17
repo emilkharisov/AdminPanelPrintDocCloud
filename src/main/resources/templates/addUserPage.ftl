@@ -1,9 +1,9 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
     <br>
-    <h2>Добавить пользователя</h2>
+    <h2 style="margin-left: 10px">Добавить пользователя</h2>
     <form method="post" action="/getAddUserPage">
-        <table>
+        <table cellpadding="5 px" style="margin-left: 10px">
             <tr>
                 <td>Фамилия</td>
                 <td><input type="text" id="lastname" name="lastname"></td>
@@ -36,9 +36,11 @@
             </tr>
             <tr>
                 <td>Админ</td>
-                <td><input type="checkbox" id="admin" name="admin" style="zoom: 4"></td>
+                <td><input type="checkbox" id="admin" name="admin" style="zoom: 2"></td>
             </tr>
-            <input type="submit" value="Добавить">
+            <tr>
+                <td><input type="submit" class="btn btn-primary" value="Добавить"></td>
+            </tr>
         </table>
     </form>
 </@c.page>

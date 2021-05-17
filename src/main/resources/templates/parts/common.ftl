@@ -40,16 +40,16 @@
             <a class="navbar-brand" href="#" style="font-size: 35px">Мониторинг</a>
             <a class="navbar-brand" href="#" style="font-size: 35px"></a>
             <li class="nav-item">
-                <a class="nav-link" href="/mailSender" style="font-size: 25px">Панель управления</a>
+                <a class="nav-link" href="/getMainPage" style="font-size: 20px">Панель управления</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/getReportMain" style="font-size: 25px">Отчёты</a>
+                <a class="nav-link" href="/getReportMain" style="font-size: 20px">Отчёты</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/getVendingMain" style="font-size: 25px">Аппараты</a>
+                <a class="nav-link" href="/getVendingMain" style="font-size: 20px">Аппараты</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/editMainPage" style="font-size: 25px">Редактирование</a>
+                <a class="nav-link" href="/editMainPage" style="font-size: 20px">Редактирование</a>
             </li>
         </ul>
         <a class="navbar-brand" href="#" style="font-size: 18px">${login}</a>

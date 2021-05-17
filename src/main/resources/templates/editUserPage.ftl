@@ -12,7 +12,7 @@
     <br>
     <h2>Окно редактирования</h2>
     <form method="post" action="/getEditUserPage?userId=${currentUser.getId()}">
-        <table>
+        <table cellpadding="5 px" style="margin-left: 10px">
             <tr>
                 <td>Фамилия</td>
                 <td><input type="text" value="${currentUser.getLastname()}" id="lastname" name="lastname"></td>
@@ -46,11 +46,12 @@
             <#if isAdmin ??>
                 <tr>
                     <td>Админ</td>
-                    <td><input type="checkbox" id="admin" name="admin" style="zoom: 4"></td>
+                    <td><input type="checkbox" id="admin" name="admin" style="zoom: 2"></td>
                 </tr>
             </#if>
-
-            <input type="submit" value="Редактировать">
+            <tr>
+                <td><input type="submit" class="btn btn-primary" value="Редактировать"></td>
+            </tr>
         </table>
     </form>
 </@c.page>

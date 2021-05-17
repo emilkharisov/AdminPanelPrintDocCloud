@@ -8,16 +8,18 @@
             if (value == 1){
 
                 document.getElementById("univer").hidden = false;
-
-
+            }
+            else {
+                document.getElementById("univer").hidden = true;
+                document.getElementById("university").value = "";
             }
 
         }
     </script>
     <br>
-    <h2>Добавить аппарат</h2>
+    <h2 style="margin-left: 10px">Добавить аппарат</h2>
     <form method="post" action="/addVendingMachine">
-        <table>
+        <table cellpadding="5 px" style="margin-left: 10px">
             <tr>
                 <td>Владелец</td>
                 <td>
@@ -76,7 +78,11 @@
                 <td>Цена за 1 лист</td>
                 <td><input type="text" id="coastForPrint" name="coastForPrint"</td>
             </tr>
-            <input type="submit" value="Добавить">
+            <tr>
+                <td>
+                    <input type="submit" class="btn btn-primary" value="Добавить">
+                </td>
+            </tr>
         </table>
     </form>
 </@c.page>

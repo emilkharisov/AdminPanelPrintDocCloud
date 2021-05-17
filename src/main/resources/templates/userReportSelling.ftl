@@ -52,7 +52,7 @@
 
     <br>
 <form method="post" action="/userAllReportSelling">
-    <table>
+    <table cellpadding="3 px">
         <tr>
             <td><label>Выбрать год</label></td>
             <td>
@@ -85,7 +85,7 @@
             </td>
         </tr>
         <tr>
-            <td><input type="submit" value="Поиск"></td>
+            <td><input type="submit" class="btn btn-primary" value="Поиск"></td>
         </tr>
     </table>
 </form>
