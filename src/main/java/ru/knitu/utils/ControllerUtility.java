@@ -2,8 +2,14 @@ package ru.knitu.utils;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import ru.knitu.model.Role;
 import ru.knitu.model.User;
+
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class ControllerUtility {
 
@@ -20,6 +26,15 @@ public class ControllerUtility {
             modelMap.addAttribute("isAdmin", isAdmin);
         }
 
+    }
+
+    public static Map<String, String> getErrors(BindingResult bindingResult) {
+        Collector<FieldError, ?, Map<String, String>> collector = Collectors.toMap(
+                fieldError -> fieldError.getField() + "Error",
+                FieldError::getDefaultMessage
+        );
+
+        return bindingResult.getFieldErrors().stream().collect(collector);
     }
 
     public static String getMonthString(int month){

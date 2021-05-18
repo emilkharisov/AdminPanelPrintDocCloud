@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,8 @@ import ru.knitu.repo.UniversityRepository;
 import ru.knitu.repo.UserRepository;
 import ru.knitu.service.VendingMachineService;
 import ru.knitu.utils.ControllerUtility;
+
+import javax.validation.Valid;
 
 @Controller
 public class VendingMachineController {
@@ -41,11 +44,20 @@ public class VendingMachineController {
     }
 
     @PostMapping("/addVendingMachine")
-    public String addVendingMachinePage(Authentication authentication, ModelMap modelMap, VendingMachineForm vendingMachineForm){
+    public String addVendingMachinePage(@Valid VendingMachineForm vendingMachineForm, BindingResult bindingResult, Authentication authentication, ModelMap modelMap){
+
+        if (bindingResult.hasErrors()){
+
+            modelMap.addAllAttributes(ControllerUtility.getErrors(bindingResult));
+
+        }
+        else {
+
+            vendingMachineService.createVendingMachine(vendingMachineForm);
+
+        }
 
         setParams(authentication, modelMap);
-
-        vendingMachineService.createVendingMachine(vendingMachineForm);
 
         return "addVendingMachine";
     }
