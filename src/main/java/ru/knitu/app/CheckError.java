@@ -32,7 +32,7 @@ public class CheckError {
                 for (VendingError vendingError : vendingErrors.get()) {
                     String errorMessage = "Ошибка аппарата - " + vendingError.getVendingMachine().getName() + "\n" + vendingError.getErrorMessage();
                     User user = vendingError.getVendingMachine().getUser();
-                    mailSender.send(user.getEmail(),"Ошибка аппарата", errorMessage);
+                   // mailSender.send(user.getEmail(),"Ошибка аппарата", errorMessage);
 
                 }
             }

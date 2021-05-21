@@ -8,6 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.knitu.form.UserForm;
+import ru.knitu.model.User;
+import ru.knitu.repo.UserRepository;
 import ru.knitu.service.UserService;
 import ru.knitu.utils.ControllerUtility;
 
@@ -18,6 +20,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping("/getAddUserPage")
     public String getAddUserPage(Authentication authentication, ModelMap modelMap){
@@ -30,6 +34,12 @@ public class UserController {
 
     @PostMapping("/getAddUserPage")
     public String addUser(@Valid UserForm userForm, BindingResult bindingResult, Authentication authentication, ModelMap modelMap){
+
+        User user = userRepository.findUserByLogin(userForm.getLogin());
+
+        if(user != null){
+            modelMap.addAttribute("loginError", "Пользователь с таким логином - сущетсвует");
+        }
 
         if (bindingResult.hasErrors()){
 

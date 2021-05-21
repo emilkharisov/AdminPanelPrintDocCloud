@@ -112,7 +112,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Цена аренды</td>
+                <td>Стоимость аренды</td>
                 <td>
                     <#if rentCoastError??>
                         <input type="text" id="rentCoast" name="rentCoast" class="form-control is-invalid">
