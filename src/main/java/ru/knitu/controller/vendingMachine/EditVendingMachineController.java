@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import ru.knitu.service.VendingMachineService;
 import ru.knitu.utils.ControllerUtility;
 import ru.knitu.utils.UserUtility;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -47,13 +49,16 @@ public class EditVendingMachineController {
     }
 
     @PostMapping("/editVendingMachine")
-    public String edit (Authentication authentication, ModelMap modelMap, @RequestParam(name = "machineId") VendingMachine vendingMachine, VendingMachineForm vendingMachineForm){
+    public String edit (@Valid VendingMachineForm vendingMachineForm, BindingResult bindingResult, Authentication authentication, ModelMap modelMap, @RequestParam(name = "machineId") VendingMachine vendingMachine){
+
+        if(bindingResult.hasErrors()){
+            modelMap.addAllAttributes(ControllerUtility.getErrors(bindingResult));
+        } else {
+            editService.edit(vendingMachineForm, vendingMachine.getId());
+        }
 
         setParams(authentication, modelMap);
-
         modelMap.addAttribute("vendingMachine", vendingMachine);
-
-        editService.edit(vendingMachineForm, vendingMachine.getId());
 
         return "editVendingMachine";
     }

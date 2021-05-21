@@ -31,8 +31,7 @@ public class UserServiceImpl implements UserService {
                 .useUpper(true)
                 .build();
         String password = passwordGenerator.generate(8);
-        System.out.println("Пароль - " + password);
-        //mailSender.send(userForm.getEmail(),"Пароль", "Ваш пароль в системе - " + password);
+        mailSender.send(userForm.getEmail(),"Пароль", "Ваш пароль в системе - " + password);
 
         String hashpassword = passwordEncoder.encode(password);
 

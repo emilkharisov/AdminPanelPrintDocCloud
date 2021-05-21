@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,8 @@ import ru.knitu.model.User;
 import ru.knitu.repo.UserRepository;
 import ru.knitu.service.EditService;
 import ru.knitu.utils.ControllerUtility;
+
+import javax.validation.Valid;
 
 @Controller
 public class EditUserController {
@@ -50,10 +53,14 @@ public class EditUserController {
     }
 
     @PostMapping("/getEditUserPage")
-    public String editUser(Authentication authentication, ModelMap modelMap, @RequestParam(name = "userId") User user, UserForm userForm){
+    public String editUser(@Valid UserForm userForm, BindingResult bindingResult, Authentication authentication, ModelMap modelMap, @RequestParam(name = "userId") User user){
 
+        if(bindingResult.hasErrors()){
+            modelMap.addAllAttributes(ControllerUtility.getErrors(bindingResult));
 
-        editService.edit(userForm, user.getId());
+        } else {
+            editService.edit(userForm, user.getId());
+        }
 
         ControllerUtility.setMainParams(modelMap, authentication);
         modelMap.addAttribute("currentUser", user);

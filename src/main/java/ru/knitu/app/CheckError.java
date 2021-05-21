@@ -6,8 +6,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import ru.knitu.model.User;
 import ru.knitu.model.VendingError;
 import ru.knitu.repo.VendingErrorRepository;
+import ru.knitu.service.MailSender;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,16 +20,20 @@ public class CheckError {
 
     @Autowired
     VendingErrorRepository vendingErrorRepository;
+    @Autowired
+    MailSender mailSender;
 
-    @Scheduled(fixedRate = 10000000)
+    @Scheduled(fixedRate = 30000)
     public void checkError(){
 
         if(vendingErrorRepository != null) {
-            System.out.println("hello1");
             Optional<List<VendingError>> vendingErrors = Optional.ofNullable(vendingErrorRepository.findAll());
             if (vendingErrors.isPresent()) {
                 for (VendingError vendingError : vendingErrors.get()) {
-                    System.out.println(vendingError.getErrorMessage() + " " + vendingError.getVendingMachine().toString());
+                    String errorMessage = "Ошибка аппарата - " + vendingError.getVendingMachine().getName() + "\n" + vendingError.getErrorMessage();
+                    User user = vendingError.getVendingMachine().getUser();
+                    mailSender.send(user.getEmail(),"Ошибка аппарата", errorMessage);
+
                 }
             }
         }
