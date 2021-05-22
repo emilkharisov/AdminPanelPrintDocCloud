@@ -3,11 +3,14 @@ package ru.knitu.app;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.knitu.model.*;
 import ru.knitu.repo.*;
 import ru.knitu.service.UserService;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 
 @Controller
@@ -173,6 +176,40 @@ public class Init {
         universityRepository.save(university2);
         universityRepository.save(university3);
 
+    }
+
+    @GetMapping("/initSelling/{vending}")
+    public String makeSale(@PathVariable VendingMachine vending){
+
+        int countOfPaper = 10;
+        long sum = countOfPaper * 2;
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        Selling selling = Selling.builder()
+                .vendingMachine(vending)
+                .time(localDateTime)
+                .countOfPaper(countOfPaper)
+                .sum(sum)
+                .year(localDateTime.getYear())
+                .month(localDateTime.getMonthValue())
+                .build();
+
+        LocalDateTime localDateTime2 = LocalDateTime.now().minusDays(3);
+
+        Selling selling2 = Selling.builder()
+                .vendingMachine(vending)
+                .time(localDateTime2)
+                .countOfPaper(countOfPaper)
+                .sum(sum)
+                .year(localDateTime.getYear())
+                .month(localDateTime.getMonthValue())
+                .build();
+        sellingRepo.save(selling);
+        sellingRepo.save(selling2);
+
+
+        return "redirect:/getMainPage";
     }
 
 }

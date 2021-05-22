@@ -19,5 +19,7 @@ public interface SellingRepo extends JpaRepository<Selling, Long> {
     List<Selling> findAllByVendingMachineAndYear(VendingMachine vendingMachine, Integer year);
     List<Selling> findAllByVendingMachineAndYearAndMonth(VendingMachine vendingMachine, Integer year, Integer month);
 
+    List<Selling> findAllByVendingMachineIn(List<VendingMachine> vendingMachineList);
+
 
 }

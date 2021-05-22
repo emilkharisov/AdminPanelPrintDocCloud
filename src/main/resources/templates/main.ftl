@@ -21,7 +21,7 @@
             <td>
                 <div class="card text-white bg-primary mb-3" style="width: 15rem; height: 7rem">
                     <div class="card-body">
-                        <h5 class="card-title">1000 ₽</h5>
+                        <h5 class="card-title">${dayStonks} ₽</h5>
                         <p class="card-text">Продажи за день</p>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
             <td>
                 <div class="card text-white bg-success mb-3" style="width: 15rem; height: 7rem">
                     <div class="card-body">
-                        <h5 class="card-title">25000 ₽</h5>
+                        <h5 class="card-title">${monthStonks} ₽</h5>
                         <p class="card-text">Продажи за месяц</p>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
             <td>
                 <div class="card text-white bg-danger mb-3" style="width: 15rem; height: 7rem">
                     <div class="card-body">
-                        <h5 class="card-title">500000 ₽</h5>
+                        <h5 class="card-title">${yearStonks} ₽</h5>
                         <p class="card-text">Продажи за год</p>
                     </div>
                 </div>
