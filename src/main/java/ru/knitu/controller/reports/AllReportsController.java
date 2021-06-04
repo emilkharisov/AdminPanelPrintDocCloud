@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.knitu.repo.SellingRepo;
 import ru.knitu.utils.ControllerUtility;
-
-
 import java.util.Optional;
 
 @Controller
@@ -26,6 +24,8 @@ public class AllReportsController {
         ControllerUtility.setMainParams(modelMap, authentication);
 
         modelMap.addAttribute("sellings", sellingRepo.findAll());
+
+        ControllerUtility.addYears(modelMap);
 
         return "reportSelling";
     }
@@ -60,6 +60,8 @@ public class AllReportsController {
         }
 
         ControllerUtility.setMainParams(modelMap, authentication);
+        ControllerUtility.addYears(modelMap);
+
 
         return "reportSelling";
     }

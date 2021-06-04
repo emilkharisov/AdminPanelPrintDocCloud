@@ -1,6 +1,8 @@
 package ru.knitu.controller.vendingMachine;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import ru.knitu.repo.UniversityRepository;
 import ru.knitu.repo.UserRepository;
 import ru.knitu.service.VendingMachineService;
 import ru.knitu.utils.ControllerUtility;
+import ru.knitu.utils.UserUtility;
 
 import javax.validation.Valid;
 
@@ -33,9 +36,12 @@ public class VendingMachineController {
     @Autowired
     UserRepository userRepository;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(VendingMachineController.class);
+
     @GetMapping("/addVendingMachine")
     public String getAddVendingMachinePage(Authentication authentication, ModelMap modelMap){
 
+        LOGGER.info("VendingMachineController.getAddVendingMachinePage  USER = " + UserUtility.getUser(authentication).getLogin());
         setParams(authentication, modelMap);
 
         modelMap.addAttribute("users", userRepository.findAll());
@@ -53,7 +59,7 @@ public class VendingMachineController {
         }
         else {
 
-            vendingMachineService.createVendingMachine(vendingMachineForm);
+            vendingMachineService.createVendingMachine(vendingMachineForm, UserUtility.getUser(authentication));
 
         }
 

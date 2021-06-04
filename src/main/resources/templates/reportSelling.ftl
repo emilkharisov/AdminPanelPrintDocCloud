@@ -42,7 +42,6 @@
                 ]
             } );
         } );
-
     </script>
 
     <br>
@@ -53,9 +52,9 @@
             <td>
                 <select name="year" id="year" class="select-field">
                     <option disabled selected>Выберите год</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
+                    <#list years as currentYear>
+                        <option value="${currentYear}">${currentYear}</option>
+                    </#list>
                 </select>
             </td>
         </tr>

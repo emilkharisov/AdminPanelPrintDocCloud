@@ -53,9 +53,9 @@
             <td>
                 <select name="year" id="year" class="select-field">
                     <option disabled selected>Выберите год</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
+                    <#list years as currentYear>
+                        <option value="${currentYear}">${currentYear}</option>
+                    </#list>
                 </select>
             </td>
         </tr>
@@ -91,7 +91,7 @@
         <tr>
             <th>Локация</th>
             <th>Город</th>
-            <th>Адресс</th>
+            <th>Адрес</th>
             <th>Дата и время</th>
             <th>Сумма</th>
             <th>Количество страниц</th>

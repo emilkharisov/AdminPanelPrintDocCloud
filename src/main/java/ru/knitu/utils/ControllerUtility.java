@@ -7,6 +7,9 @@ import org.springframework.validation.FieldError;
 import ru.knitu.model.Role;
 import ru.knitu.model.User;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -58,6 +61,23 @@ public class ControllerUtility {
         }
 
         return monthString;
+    }
+
+    public static void addYears(ModelMap modelMap){
+
+        LocalDateTime now = LocalDateTime.now();
+        List<String> years = new ArrayList<String>();
+
+        String currentYear = String.valueOf(now.getYear());
+        String previousYear = String.valueOf(now.getYear() - 1);
+        String prePreviousYear = String.valueOf(now.getYear() - 2);
+
+        years.add(currentYear);
+        years.add(previousYear);
+        years.add(prePreviousYear);
+
+
+        modelMap.addAttribute("years", years);
     }
 
 }

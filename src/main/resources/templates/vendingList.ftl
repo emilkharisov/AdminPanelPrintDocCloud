@@ -17,8 +17,7 @@
             <th>Наименование аппарата</th>
             <th>Город</th>
             <th>Тип</th>
-            <th>Адресс</th>
-            <th></th>
+            <th>Адрес</th>
         </tr>
         </thead>
         <tbody>
@@ -28,7 +27,6 @@
             <td>${vending.getCity().getCity()}</td>
             <td>${vending.getTypeOfLocation().getType()}</td>
             <td>${vending.getAddress()}</td>
-            <td><a href="/editVendingMachine?machineId=${vending.getId()}">Редактировать</a></td>
         </tr>
         </#list>
         </tbody>

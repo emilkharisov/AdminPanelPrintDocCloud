@@ -37,6 +37,8 @@ public class VendingReportsController {
         modelMap.addAttribute("sellings", sellingRepo.findAllByVendingMachine(vendingMachine));
 
         modelMap.addAttribute("vending" , vendingMachine);
+        ControllerUtility.addYears(modelMap);
+
 
         return "vendingSelling";
     }
@@ -74,6 +76,8 @@ public class VendingReportsController {
         ControllerUtility.setMainParams(modelMap, authentication);
 
         modelMap.addAttribute("vending" , vendingMachine);
+        ControllerUtility.addYears(modelMap);
+
 
         return "vendingSelling";
     }

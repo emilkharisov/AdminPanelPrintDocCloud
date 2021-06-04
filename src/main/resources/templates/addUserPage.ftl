@@ -68,7 +68,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Почта</td>
+                <td>Email</td>
                 <td>
                     <#if emailError??>
                         <input type="text" id="email" name="email" class="form-control is-invalid">

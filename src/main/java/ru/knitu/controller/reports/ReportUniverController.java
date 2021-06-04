@@ -29,6 +29,9 @@ public class ReportUniverController {
 
         modelMap.addAttribute("sellings", filterUniver(sellingRepo.findAll()));
 
+        ControllerUtility.addYears(modelMap);
+
+
         return "reportSellingUniver";
     }
 
@@ -62,6 +65,8 @@ public class ReportUniverController {
         }
 
         ControllerUtility.setMainParams(modelMap, authentication);
+        ControllerUtility.addYears(modelMap);
+
 
         return "reportSellingUniver";
     }

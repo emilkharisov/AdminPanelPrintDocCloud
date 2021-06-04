@@ -35,6 +35,9 @@ public class UserReportsController {
         String userName = String.format("%s %s", user.getTypeOfLegalEntity(), user.getNameOfLegalEntity());
         modelMap.addAttribute("name", userName);
 
+        ControllerUtility.addYears(modelMap);
+
+
         return "userReportSelling";
     }
 
@@ -73,6 +76,9 @@ public class UserReportsController {
 
         String userName = String.format("%s %s", user.getTypeOfLegalEntity(), user.getNameOfLegalEntity());
         modelMap.addAttribute("name", userName);
+
+        ControllerUtility.addYears(modelMap);
+
 
         return "userReportSelling";
     }

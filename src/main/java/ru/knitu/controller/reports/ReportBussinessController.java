@@ -29,6 +29,9 @@ public class ReportBussinessController {
 
         modelMap.addAttribute("sellings", filterBussiness(sellingRepo.findAll()));
 
+        ControllerUtility.addYears(modelMap);
+
+
         return "bussinesSellingUniver";
     }
 
@@ -62,6 +65,8 @@ public class ReportBussinessController {
         }
 
         ControllerUtility.setMainParams(modelMap, authentication);
+        ControllerUtility.addYears(modelMap);
+
 
         return "bussinesSellingUniver";
     }
