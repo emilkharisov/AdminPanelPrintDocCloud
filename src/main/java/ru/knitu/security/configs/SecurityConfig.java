@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/static/**").permitAll()
                 .antMatchers("/init/**").permitAll()
+                .antMatchers("/getResetPassword/**").permitAll()
                 .antMatchers("/addVendingMachine/**").hasAuthority(Role.ADMIN.name())
                 .antMatchers("//getAddUserPage/**").hasAuthority(Role.ADMIN.name())
                 .antMatchers("/allReportSelling/**").hasAuthority(Role.ADMIN.name())

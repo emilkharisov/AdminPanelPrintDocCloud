@@ -116,6 +116,7 @@
                     <div class="d-flex justify-content-center mt-3 login_container">
                         <button type="submit" class="btn login_btn">Войти</button>
                     </div>
+                    <a href="/getResetPassword" style="padding-left: 70px">Забыл пароль</a>
                 </form>
             </div>
         </div>

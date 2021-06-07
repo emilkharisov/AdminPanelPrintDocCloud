@@ -3,7 +3,6 @@ package ru.knitu.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.knitu.app.Init;
 import ru.knitu.form.UserForm;
 import ru.knitu.model.Role;
 import ru.knitu.model.State;
@@ -31,7 +30,6 @@ public class UserServiceImpl implements UserService {
                 .useUpper(true)
                 .build();
         String password = passwordGenerator.generate(8);
-        mailSender.send(userForm.getEmail(),"Пароль", "Ваш пароль в системе - " + password);
 
         String hashpassword = passwordEncoder.encode(password);
 
@@ -49,6 +47,8 @@ public class UserServiceImpl implements UserService {
                 .build();
 
         userRepository.save(user);
+        mailSender.send(userForm.getEmail(),"Пароль", "Ваш пароль в системе - " + password);
+
     }
 
     @Override
